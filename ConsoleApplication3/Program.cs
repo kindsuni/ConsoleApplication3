@@ -562,66 +562,71 @@ namespace ConsoleApplication3
             public int val;
             public Node next;
         }
-            class myStack //입력 받은값을 역순으로 출력하는 클래스
+        class myStack //입력 받은값을 역순으로 출력하는 클래스
+        {
+            Node head = null; //처음 헤드와 탑은 비어있는 값
+            Node top = null;
+
+            public void push(int val) //입력 받은 Int형 값들을 저장 하는 메소드
             {
-                Node head = null; //처음 헤드와 탑은 비어있는 값
-                Node top = null;
-
-                public void push(int val) //입력 받은 Int형 값들을 저장 하는 메소드
+                Node tmpNode = new Node(); //값을 받을 Node의 변수를 tmpNode를 지정해줌
+                tmpNode.val = val;     //입력 받은 Val값을 지정한 tmpNode.val에 저장
+                tmpNode.next = null;  // 다음 입력이 없으면 tmpNode.nexe(다음 주소)는 비어있음.
+                                      //tmpNode는 움직이지 않고 입력만 받은 상태이므로 입력받은 값들이 서로 연결되지 않은 상태.
+                if (head != null) //head가 Null이 아닐때
                 {
-                    Node tmpNode = new Node(); //값을 받을 Node의 변수를 tmpNode를 지정해줌
-                    tmpNode.val = val;     //입력 받은 Val값을 지정한 tmpNode.val에 저장
-                    tmpNode.next = null;  // 다음 입력이 없으면 tmpNode.nexe(다음 주소)는 비어있음.
-                    //tmpNode는 움직이지 않고 입력만 받은 상태이므로 입력받은 값들이 서로 연결되지 않은 상태.
-                    if (head != null) //head가 Null이 아닐때
-                    {
-                        Node tmpNode2 = head; // 루프문을 돌 임의의 Node를 지정해서 tmpNode2가 돌아다니면서 끝을 찾음.
-                        for (; tmpNode2.next != null;) //tmpNode2.next가 Null값이 되면 루프를 빠져나옴
-                        {                           //(입력된 값의 마지막은 항상 Null이기 때문에 끝을 판단함)
-                            tmpNode2 = tmpNode2.next; //Null(끝)이 될때까지 tmpNode2를 Next로 바꿔주어 한칸씩 옮김
-                        }
-                        tmpNode2.next = tmpNode; //마지막 값을 찾았으면 그 값을 tmpNode2.next에 저장.
-                        top = tmpNode; // 끝에 도달 했을때 top에 tmpNode값을 저장.
+                    Node tmpNode2 = head; // 루프문을 돌 임의의 Node를 지정해서 tmpNode2가 돌아다니면서 끝을 찾음.
+                    for (; tmpNode2.next != null;) //tmpNode2.next가 Null값이 되면 루프를 빠져나옴
+                    {                           //(입력된 값의 마지막은 항상 Null이기 때문에 끝을 판단함)
+                        tmpNode2 = tmpNode2.next; //Null(끝)이 될때까지 tmpNode2를 Next로 바꿔주어 한칸씩 옮김
                     }
-                    else //head 가 Null일때 
-                    {
-                        head = tmpNode; // 헤드가 비어있으면 그 곳에 받은 값을 저장함.(저장되면 if문으로 들어감.)
-                    }
+                    tmpNode2.next = tmpNode; //마지막 값을 찾았으면 그 값을 tmpNode2.next에 저장.
+                    top = tmpNode; // 끝에 도달 했을때 top에 tmpNode값을 저장.
                 }
-                public int pop() //입력 받은 Int형 값들을 역순으로 빼내는 메소드
+                else //head 가 Null일때 
                 {
-                    int curval = top.val; //임의의 int형 값에 현재 top에 저장된 입력값을 저장.
-                    Node curNode = head; //head는 움직이면 안되므로 임의의 값에 head를 저장하여 이용
+                    head = tmpNode; // 헤드가 비어있으면 그 곳에 받은 값을 저장함.(저장되면 if문으로 들어감.)
+                }
+            }
+            public int pop() //입력 받은 Int형 값들을 역순으로 빼내는 메소드
+            {
 
+                Node curNode = head; //head는 움직이면 안되므로 임의의 값에 head를 저장하여 이용
 
+                if (top != null)
+                {
                     if (head != top) //head가 top이 아닐때
                     {
-                        for (; curNode.next != top;) //curNode.next가 top이 될때 까지 curNode값을 Next로 이동
-                            curNode = curNode.next;
-                        int returnVal = top.val; 
+                        for (; curNode.next != top;) //curNode.next가 top이 될때 까지
+                            curNode = curNode.next; // curNode값을 Next로 이동
+                        int returnVal = top.val;
+
+                        top.next = null; //top다음 값을 비어둠.
+                        top = curNode; //top값을 마지막 값으로 바꿈.
                         return returnVal;
                     }
-                    else if (head == top) //head 와 top이 같을때 리턴후 두값을 null로 
+                    else //head 와 top이 같을때 리턴후 두값을 null로 
                     {
                         int returnVal = top.val;
                         head = null;
                         top = null;
                         return returnVal;
                     }
-                    else
-                    {     //둘다 null이면 비었음
-                        Console.WriteLine("비었음");
-                        return 0;
-                    }
-
+                }
+                else
+                {     //둘다 null이면 비었음
+                    Console.WriteLine("비었음");
+                    return 0;
                 }
 
 
             }
-        
-        
 
-       
+        }
+
+
+
+
         // Stack ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
         class OwnStack
         {
@@ -656,7 +661,7 @@ namespace ConsoleApplication3
             }
 
         }
-        
+
 
 
         //Queue pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
@@ -712,7 +717,15 @@ namespace ConsoleApplication3
 
         {
             myStack Go = new myStack();
-           
+            for (int i = 1; i < 10; i++)
+            {
+                Go.push(i);
+            }
+
+            for (int i = 1; i < 10; i++)
+            {
+             Console.WriteLine(   Go.pop());
+            }
             /*
     MyQueue de = new MyQueue();
 
