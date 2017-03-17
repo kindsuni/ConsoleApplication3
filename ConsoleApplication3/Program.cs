@@ -578,7 +578,7 @@ namespace ConsoleApplication3
                         {                           //(입력된 값의 마지막은 항상 Null이기 때문에 끝을 판단함)
                             tmpNode2 = tmpNode2.next; //Null(끝)이 될때까지 tmpNode2를 Next로 바꿔주어 한칸씩 옮김
                         }
-                        tmpNode2.next = tmpNode; //마지막 값을 찾았으면 그 값을 tmpNode2.next에 저장하여 서로 연결 시킴.
+                        tmpNode2.next = tmpNode; //마지막 값을 찾았으면 그 값을 tmpNode2.next에 저장.
                         top = tmpNode; // 끝에 도달 했을때 top에 tmpNode값을 저장.
                     }
                     else //head 가 Null일때 
@@ -588,8 +588,21 @@ namespace ConsoleApplication3
                 }
                 public int pop() //입력 받은 Int형 값들을 역순으로 빼내는 메소드
                 {
+                    int curval = top.val; //임의의 int형 값에 현재 top에 저장된 입력값을 저장.
+                    Node tmpNode = new Node(); 
+                    if (head ==null) //head가 Null로 되면 값이 없음.
+                    {
+                        Console.WriteLine("stack 비었음");
+                        return 0; //리턴.
+                    }
+                    else
+                    {
+                        for (; tmpNode.next != top;) //tmpNode.Next가 top과 같아질때 까지 루프를 돔 
+                        {
+                            tmpNode = tmpNode.next; //top이 될때 까지 tmpNode를 이동.
+                        }
 
-
+                    }
 
                 }
 
