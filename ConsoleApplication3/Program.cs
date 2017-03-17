@@ -557,7 +557,7 @@ namespace ConsoleApplication3
 
         }
         ////LinkedList로 Queue구현
-        class LinledQueue
+        class LQueue
         {
             Node head = null;
             Node tail = null;
@@ -581,8 +581,22 @@ namespace ConsoleApplication3
             public int outqueue()
             {
                 int returnVal;
+                if(head != null)
+                {
+                    return head.val;
+                    if (head == tail)
+                    {
+                        returnVal = head.val;
+                        head = null;
+                        tail = null;
+                        return returnVal;
+                    }
+                   
 
-
+                }
+                else
+                    Console.WriteLine("비었음");
+                return int.MaxValue;
             }
 
 
@@ -751,6 +765,13 @@ namespace ConsoleApplication3
         static void Main(string[] args)
 
         {
+            LQueue Go = new LQueue();
+            Go.enqueue(1);
+            Go.enqueue(2);
+
+            Console.WriteLine(Go.outqueue());
+            Console.WriteLine(Go.outqueue());
+            
             /*
             myStack Go = new myStack();
             for (int i = 1; i <= 10; i++)
