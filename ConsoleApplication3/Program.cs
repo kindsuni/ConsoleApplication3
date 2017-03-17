@@ -556,14 +556,16 @@ namespace ConsoleApplication3
             }
 
         }
+        //LinkedList로 Stack구현
         class Node
         { //노드는 값(val) 과 다음값을 가르키는 주소(Next)를 가진다
-           public int val;
-           Node next;
+            public int val;
+            public Node next;
+        }
             class myStack //입력 받은값을 역순으로 출력하는 클래스
             {
                 Node head = null; //처음 헤드와 탑은 비어있는 값
-                Node top = null; 
+                Node top = null;
 
                 public void push(int val) //입력 받은 Int형 값들을 저장 하는 메소드
                 {
@@ -574,7 +576,7 @@ namespace ConsoleApplication3
                     if (head != null) //head가 Null이 아닐때
                     {
                         Node tmpNode2 = head; // 루프문을 돌 임의의 Node를 지정해서 tmpNode2가 돌아다니면서 끝을 찾음.
-                        for(;tmpNode2.next!=null;) //tmpNode2.next가 Null값이 되면 루프를 빠져나옴
+                        for (; tmpNode2.next != null;) //tmpNode2.next가 Null값이 되면 루프를 빠져나옴
                         {                           //(입력된 값의 마지막은 항상 Null이기 때문에 끝을 판단함)
                             tmpNode2 = tmpNode2.next; //Null(끝)이 될때까지 tmpNode2를 Next로 바꿔주어 한칸씩 옮김
                         }
@@ -589,28 +591,37 @@ namespace ConsoleApplication3
                 public int pop() //입력 받은 Int형 값들을 역순으로 빼내는 메소드
                 {
                     int curval = top.val; //임의의 int형 값에 현재 top에 저장된 입력값을 저장.
-                    Node tmpNode = new Node(); 
-                    if (head ==null) //head가 Null로 되면 값이 없음.
+                    Node curNode = head; //head는 움직이면 안되므로 임의의 값에 head를 저장하여 이용
+
+
+                    if (head != top) //head가 top이 아닐때
                     {
-                        Console.WriteLine("stack 비었음");
-                        return 0; //리턴.
+                        for (; curNode.next != top;) //curNode.next가 top이 될때 까지 curNode값을 Next로 이동
+                            curNode = curNode.next;
+                        int returnVal = top.val; 
+                        return returnVal;
+                    }
+                    else if (head == top) //head 와 top이 같을때 리턴후 두값을 null로 
+                    {
+                        int returnVal = top.val;
+                        head = null;
+                        top = null;
+                        return returnVal;
                     }
                     else
-                    {
-                        for (; tmpNode.next != top;) //tmpNode.Next가 top과 같아질때 까지 루프를 돔 
-                        {
-                            tmpNode = tmpNode.next; //top이 될때 까지 tmpNode를 이동.
-                        }
-
+                    {     //둘다 null이면 비었음
+                        Console.WriteLine("비었음");
+                        return 0;
                     }
 
                 }
 
 
             }
-        }
+        
         
 
+       
         // Stack ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
         class OwnStack
         {
@@ -645,34 +656,7 @@ namespace ConsoleApplication3
             }
 
         }
-        class LinkStack
-        {
-
-            Node next;
-            class Node
-            {
-
-
-                public void push(int val)
-                {
-                    if (head == null)
-                    {
-
-                    }
-
-
-
-                }
-                public int pop()
-                {
-
-
-
-                }
-
-            }
-
-        }
+        
 
 
         //Queue pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
@@ -727,18 +711,21 @@ namespace ConsoleApplication3
         static void Main(string[] args)
 
         {
+            myStack Go = new myStack();
+           
             /*
-            MyQueue de = new MyQueue();
+    MyQueue de = new MyQueue();
 
-            for (int i = 1; i < 11; i++)
-            {
-                de.enqueue(i);
-            }
-            for (int i=1; i<11; i++)
-            {
-                Console.WriteLine(de.dequeue());
-            }
-            */
+    for (int i = 1; i < 11; i++)
+    {
+        de.enqueue(i);
+    }
+    for (int i=1; i<11; i++)
+    {
+        Console.WriteLine(de.dequeue());
+    }
+    */
+
             /*
             OwnStack stackInt = new OwnStackInt();
 
