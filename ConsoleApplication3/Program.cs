@@ -556,8 +556,47 @@ namespace ConsoleApplication3
             }
 
         }
+        class Node
+        { //노드는 값(val) 과 다음값을 가르키는 주소(Next)를 가진다
+           public int val;
+           Node next;
+            class myStack //입력 받은값을 역순으로 출력하는 클래스
+            {
+                Node head = null; //처음 헤드와 탑은 비어있는 값
+                Node top = null; 
+
+                public void push(int val) //입력 받은 Int형 값들을 저장 하는 메소드
+                {
+                    Node tmpNode = new Node(); //값을 받을 Node의 변수를 tmpNode를 지정해줌
+                    tmpNode.val = val;     //입력 받은 Val값을 지정한 tmpNode.val에 저장
+                    tmpNode.next = null;  // 다음 입력이 없으면 tmpNode.nexe(다음 주소)는 비어있음.
+                    //tmpNode는 움직이지 않고 입력만 받은 상태이므로 입력받은 값들이 서로 연결되지 않은 상태.
+                    if (head != null) //head가 Null이 아닐때
+                    {
+                        Node tmpNode2 = head; // 루프문을 돌 임의의 Node를 지정해서 tmpNode2가 돌아다니면서 끝을 찾음.
+                        for(;tmpNode2.next!=null;) //tmpNode2.next가 Null값이 되면 루프를 빠져나옴
+                        {                           //(입력된 값의 마지막은 항상 Null이기 때문에 끝을 판단함)
+                            tmpNode2 = tmpNode2.next; //Null(끝)이 될때까지 tmpNode2를 Next로 바꿔주어 한칸씩 옮김
+                        }
+                        tmpNode2.next = tmpNode; //마지막 값을 찾았으면 그 값을 tmpNode2.next에 저장하여 서로 연결 시킴.
+                        top = tmpNode; // 끝에 도달 했을때 top에 tmpNode값을 저장.
+                    }
+                    else //head 가 Null일때 
+                    {
+                        head = tmpNode; // 헤드가 비어있으면 그 곳에 받은 값을 저장함.(저장되면 if문으로 들어감.)
+                    }
+                }
+                public int pop() //입력 받은 Int형 값들을 역순으로 빼내는 메소드
+                {
 
 
+
+                }
+
+
+            }
+        }
+        
 
         // Stack ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
         class OwnStack
