@@ -556,6 +556,41 @@ namespace ConsoleApplication3
             }
 
         }
+        ////LinkedList로 Queue구현
+        class LinledQueue
+        {
+            Node head = null;
+            Node tail = null;
+
+            public void enqueue(int val)
+            {
+                Node tmpNode = new Node();
+                tmpNode.val = val;
+                tmpNode.next = null;
+                if(head != null)
+                {
+                    tmpNode = tmpNode.next;
+                }
+                else
+                {
+                    head = tmpNode;
+                }
+               
+            }
+
+            public int outqueue()
+            {
+                int returnVal;
+
+
+            }
+
+
+        }
+
+
+
+
         //LinkedList로 Stack구현
         class Node
         { //노드는 값(val) 과 다음값을 가르키는 주소(Next)를 가진다
@@ -716,16 +751,18 @@ namespace ConsoleApplication3
         static void Main(string[] args)
 
         {
+            /*
             myStack Go = new myStack();
-            for (int i = 1; i < 10; i++)
+            for (int i = 1; i <= 10; i++)
             {
                 Go.push(i);
             }
 
-            for (int i = 1; i < 10; i++)
+            for (int i = 1; i <= 10; i++)
             {
-             Console.WriteLine(   Go.pop());
+             Console.WriteLine(Go.pop());
             }
+            */
             /*
     MyQueue de = new MyQueue();
 
