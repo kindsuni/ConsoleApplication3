@@ -559,44 +559,50 @@ namespace ConsoleApplication3
         ////LinkedList로 Queue구현
         class LQueue
         {
-            Node head = null;
+            Node head = null; //처음 head와 tail는 Null값
             Node tail = null;
 
             public void enqueue(int val)
             {
-                Node tmpNode = new Node();
-                tmpNode.val = val;
-                tmpNode.next = null;
-                if(head != null)
+                Node tmpNode = new Node(); //임의의 Node를 지정
+                tmpNode.val = val; //입력 받은 값을 지정한 Node에 저장
+                tmpNode.next = null; //Next는 비어있음
+                if(head != null) // head가 Null이 아니면
                 {
-                    tmpNode = tmpNode.next;
+                    tmpNode = tmpNode.next; //지정한 변수를 다음으로 이동
+                    
                 }
                 else
                 {
-                    head = tmpNode;
+                    head = tmpNode; // Null값이면 입력받은 값을 헤드에 저장 하고 if문으로 감.
+                    tail = head; // tail도 Null값이면 head값을 향하게 함.
                 }
-               
+                  
             }
 
-            public int outqueue()
+            public int detqueue()
             {
                 int returnVal;
-                if(head != null)
+                if (head != null) //head가 null값이 아니면
                 {
-                    return head.val;
-                    if (head == tail)
-                    {
-                        returnVal = head.val;
-                        head = null;
-                        tail = null;
-                        return returnVal;
-                    }
-                   
+                    returnVal = head.val; //head 에 저장된 val을 그대로 리턴
+
+                    return returnVal;
+
 
                 }
                 else
+                { //빼낼 값이 없으면 비었음
                     Console.WriteLine("비었음");
-                return int.MaxValue;
+                    return int.MaxValue;
+                }
+                if (head == tail) //head가 tail과 같으면 (1개만 입력된 경우)
+                {
+                    returnVal = head.val; //head에 저장된 val값을 리턴 후
+                    head = null; //head와 tail을 null로 초기화
+                    tail = null;
+                    return returnVal;
+                }
             }
 
 
@@ -768,10 +774,16 @@ namespace ConsoleApplication3
             LQueue Go = new LQueue();
             Go.enqueue(1);
             Go.enqueue(2);
+            Go.enqueue(3);
+            Go.enqueue(4);
 
-            Console.WriteLine(Go.outqueue());
-            Console.WriteLine(Go.outqueue());
-            
+
+            Console.WriteLine(Go.detqueue());
+            Console.WriteLine(Go.detqueue());
+            Console.WriteLine(Go.detqueue());
+            Console.WriteLine(Go.detqueue());
+
+
             /*
             myStack Go = new myStack();
             for (int i = 1; i <= 10; i++)
