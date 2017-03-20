@@ -8,7 +8,7 @@ namespace ConsoleApplication3
 {
     class Program
     {
-
+        
         //할인값 계산
         public static float sale(float price, float coupon)
         {
@@ -556,6 +556,23 @@ namespace ConsoleApplication3
             }
 
         }
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         ////LinkedList로 Queue구현
         class LQueue
         {
@@ -567,17 +584,17 @@ namespace ConsoleApplication3
                 Node tmpNode = new Node(); //임의의 Node를 지정
                 tmpNode.val = val; //입력 받은 값을 지정한 Node에 저장
                 tmpNode.next = null; //Next는 비어있음
-                if(head != null) // head가 Null이 아니면
+                if (head != null) // head가 Null이 아니면
                 {
                     tmpNode = tmpNode.next; //지정한 변수를 다음으로 이동
-                    
+
                 }
                 else
                 {
                     head = tmpNode; // Null값이면 입력받은 값을 헤드에 저장 하고 if문으로 감.
                     tail = head; // tail도 Null값이면 head값을 향하게 함.
                 }
-                  
+
             }
 
             public int detqueue()
@@ -771,6 +788,7 @@ namespace ConsoleApplication3
         static void Main(string[] args)
 
         {
+            /*
             LQueue Go = new LQueue();
             Go.enqueue(1);
             Go.enqueue(2);
@@ -782,7 +800,7 @@ namespace ConsoleApplication3
             Console.WriteLine(Go.detqueue());
             Console.WriteLine(Go.detqueue());
             Console.WriteLine(Go.detqueue());
-
+            */
 
             /*
             myStack Go = new myStack();
@@ -796,18 +814,18 @@ namespace ConsoleApplication3
              Console.WriteLine(Go.pop());
             }
             */
-            /*
-    MyQueue de = new MyQueue();
+/*
+            MyQueue de = new MyQueue();
 
-    for (int i = 1; i < 11; i++)
-    {
-        de.enqueue(i);
-    }
-    for (int i=1; i<11; i++)
-    {
-        Console.WriteLine(de.dequeue());
-    }
-    */
+            for (int i = 1; i < 11; i++)
+            {
+                de.enqueue(i);
+            }
+            for (int i = 1; i < 11; i++)
+            {
+                Console.WriteLine(de.dequeue());
+            }
+            */
 
             /*
             OwnStack stackInt = new OwnStackInt();
@@ -1148,7 +1166,7 @@ namespace ConsoleApplication3
             }
             */
 
-
+           
 
         }
 
@@ -1157,3 +1175,4 @@ namespace ConsoleApplication3
 
 
 }
+  
